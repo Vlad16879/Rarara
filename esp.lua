@@ -1,14 +1,17 @@
-local player = game.Players.LocalPlayer
-repeat task.wait() until player.Character and player.Character:FindFirstChild("HumanoidRootPart")
-local hrp = player.Character.HumanoidRootPart
-while task.wait(0.2) do
-    for _, item in pairs(workspace:GetChildren()) do
-        if item:IsA("Part") or item:IsA("MeshPart") then
-            if item.Name == "Fruit" or item.Name == "Seed" or item.Name == "Flower" then
-                hrp.CFrame = item.CFrame
-                firetouchinterest(hrp, item, 0)
-                firetouchinterest(hrp, item, 1)
-                task.wait(0.1)
+while wait(0.5) do
+    for i, childrik in pairs(workspace:GetDescendants()) do
+        if childrik:FindFirstChild("Humanoid") then
+            if not childrik:FindFirstChild("EspBox") then
+                if childrik ~= game.Players.LocalPlayer.Character then
+                    local esp = Instance.new("BoxHandleAdornment", childrik)
+                    esp.Adornee = childrik
+                    esp.ZIndex = 0
+                    esp.Size = Vector3.new(4, 5, 1)
+                    esp.Transparency = 0.65
+                    esp.Color3 = Color3.fromRGB(255, 48, 48)
+                    esp.AlwaysOnTop = true
+                    esp.Name = "EspBox"
+                end
             end
         end
     end
